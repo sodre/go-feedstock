@@ -6,8 +6,8 @@ jobs:
   strategy:
     maxParallel: 4
     matrix:
-      win_target_platformwin-64:
-        CONFIG: win_target_platformwin-64
+      win_:
+        CONFIG: win_
         CONDA_BLD_PATH: D:\\bld\\
   steps:
     # TODO: Fast finish on azure pipelines?
