@@ -79,6 +79,43 @@ outputs:
         - file hello`go env GOEXE` | grep '{{ conda_gofile }}'  # [unix]
         - for /f "usebackq tokens=*" %%a in (`go env GOEXE`) do file hello%%a | grep '{{ conda_gofile }}'  # [win]
 
+  - name: {{ name|lower }}-cgo_{{ target_platform }}
+    script: build-cgo.sh   # [not win]
+    script: build-cgo.bat  # [win]
+    requirements:
+      build:
+        {% if not win %}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        {% else %}
+        - {{ n }}toolchain
+        {% endif %}
+        - sed      # [osx]
+        - m2-sed   # [win]
+        - m2-file  # [win]
+        - m2-grep  # [win]
+      host:
+        - {{ name|lower }}-core
+
+      run:
+        - {{ name|lower }}-core
+        {% if not win %}
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - {{ compiler('fortran') }}
+        {% else %}
+        - {{ n }}toolchain
+        {% endif %}
+
+    test:
+      files:
+        - hello-c.go
+      requires:
+        - posix  # [win]
+      commands:
+        - go env
+        - go build hello-c.go
 
 about:
   home: http://golang.org

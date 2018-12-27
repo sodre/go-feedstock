@@ -32,7 +32,7 @@ rem go finds its *.go files via the GOROOT variable
 for %%F in (activate deactivate) do (
   if not exist "%PREFIX%\etc\conda\%%F.d" mkdir "%PREFIX%\etc\conda\%%F.d"
   if errorlevel 1 exit 1
-  copy "%RECIPE_DIR%\%%F-go-core.bat" "%PREFIX%\etc\conda\%%F.d\%%F-go-core.bat"
+  copy "%RECIPE_DIR%\%%F-go-core.bat" "%PREFIX%\etc\conda\%%F.d\%%F-z60-go-core.bat"
   if errorlevel 1 exit 1
   dir %PREFIX%\etc\conda\%%F.d\
 )

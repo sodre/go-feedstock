@@ -35,5 +35,5 @@ find ../go/bin -type f -exec ln -s {} . \;
 # go finds its *.go files via the GOROOT variable
 for F in activate deactivate; do
   mkdir -p "${PREFIX}/etc/conda/${F}.d"
-  cp -v "${RECIPE_DIR}/${F}-go-core.sh" "${PREFIX}/etc/conda/${F}.d/${F}-go-core.sh"
+  cp -v "${RECIPE_DIR}/${F}-go-core.sh" "${PREFIX}/etc/conda/${F}.d/${F}-z60-go-core.sh"
 done
