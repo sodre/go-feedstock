@@ -16,8 +16,8 @@ conda_goplatform:
 - linux-64
 - osx-64
 - win-64
-fortran_compiler:
-- flang
+target_platform:
+- win-64
 zip_keys:
 - - conda_goplatform
   - conda_goos
