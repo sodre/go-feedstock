@@ -4,7 +4,7 @@ set -euf
 # Install and source the [de]activate scripts.
 for F in activate deactivate; do
   mkdir -p "${PREFIX}/etc/conda/${F}.d"
-  cp -v "${RECIPE_DIR}/${F}-go-${cgo_var}.sh" "${PREFIX}/etc/conda/${F}.d/${F}-z60-${cgo_var}.sh"
+  cp -v "${RECIPE_DIR}/${F}-go-${cgo_var}.sh" "${PREFIX}/etc/conda/${F}.d/${F}-z60-go-${cgo_var}.sh"
 done
 
 source "${PREFIX}/etc/conda/activate.d/activate-z60-go-${cgo_var}.sh"
