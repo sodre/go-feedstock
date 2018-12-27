@@ -6,12 +6,17 @@
 export GOROOT=$SRC_DIR/go
 export GOCACHE=off
 pushd $GOROOT/src
+
+# CGO is only available when the go_platform matched the target_platform
+export CGO_ENABLED=0
+
 if [[ $(uname) == 'Darwin' ]]; then
   # Tests on macOS receive SIGABRT on Travis :-/
   # All tests run fine on Mac OS X:10.9.5:13F1911 locally
   ./make.bash
 elif [[ $(uname) == 'Linux' ]]; then
-  ./all.bash
+  # TODO: remove this before going back to master if possible
+  ./make.bash
 fi
 popd
 
