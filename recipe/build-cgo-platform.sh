@@ -10,7 +10,7 @@ for F in activate deactivate; do
   # Second, expand the GOOS and GOARCH variables
   # We have to use the conda provided ones in this case
   sed -i.bak \
-    -e "s|@GOOS@|${target_platform}|g" \
+    -e "s|@GOOS@|$(go env GOOS)|g" \
     -e "s|@GOARCH@|${conda_goarch}|g" "${F}-go-platform.sh"
 
   # Copy the rendered [de]activate scripts to $PREFIX/etc/conda/[de]activate.d

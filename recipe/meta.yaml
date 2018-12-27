@@ -24,18 +24,15 @@ build:
     - /usr/lib/libgcc_s.1.dylib
     - libc.so.6
 
-requirements:
-  run:
-    - {{ pin_subpackage(name.lower()+"_linux-64", exact=True) }}  # [linux]
-    - {{ pin_subpackage(name.lower()+"_osx-64", exact=True) }}    # [osx]
-    - {{ pin_subpackage(name.lower()+"_win-64", exact=True) }}    # [win]
-
-test:
-  commands:
-    - go help
-    - go version
-
 outputs:
+  - name: {{ name|lower}}  # [cgo]
+    requirements:  # [cgo]
+      run:  # [cgo]
+        - {{ pin_subpackage(name.lower()+"_"+target_platform, exact=True) }}  # [cgo]
+    test:  # [cgo]
+      commands:  # [cgo]
+        - go version  # [cgo]
+
   - name: {{ name|lower }}-core  # [cgo]
   - name: {{ name|lower }}-nocgo-core  # [not cgo]
     script: build-core.sh   # [not win]
