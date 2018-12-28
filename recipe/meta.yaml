@@ -38,7 +38,7 @@ outputs:
     script: build-core.bat  # [win]
     requirements:
       build:
-        - {{ compiler('go-bootstrap') }}
+        - {{ compiler('go14') }}
 
         - perl     # [not win]
         - sed      # [osx]
@@ -82,8 +82,6 @@ outputs:
         - m2-sed   # [win]
         - m2-file  # [win]
         - m2-grep  # [win]
-      host:
-        - {{ pin_subpackage("go-"+cgo_var, exact=True) }}
       run:
         - {{ pin_subpackage("go-"+cgo_var, exact=True) }}
 

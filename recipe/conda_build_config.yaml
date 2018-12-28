@@ -1,4 +1,4 @@
-go_bootstrap_compiler:
+go14_compiler:
   - go1.4-bootstrap
 cgo:
   - 0
