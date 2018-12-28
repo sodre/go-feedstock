@@ -30,6 +30,8 @@ docker_image:
 - condaforge/linux-anvil
 fortran_compiler:
 - toolchain_fort
+go14_compiler:
+- go1.4-bootstrap
 perl:
 - '5.26'
 pin_run_as_build:

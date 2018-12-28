@@ -30,6 +30,8 @@ cxx_compiler:
 - toolchain_cxx
 fortran_compiler:
 - toolchain_fort
+go14_compiler:
+- go1.4-bootstrap
 macos_machine:
 - x86_64-apple-darwin13.4.0
 macos_min_version:
