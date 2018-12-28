@@ -46,11 +46,7 @@ outputs:
         - m2-grep  # [win]
 
         - {{ compiler('c') }}              # [unix and cgo]
-        - {{ compiler('cxx') }}            # [unix and cgo]
-        - {{ compiler('fortran') }}        # [unix and cgo]
         - {{ compiler('m2w64_c') }}        # [win and cgo]
-        - {{ compiler('m2w64_cxx') }}      # [win and cgo]
-        - {{ compiler('m2w64_fortran') }}  # [win and cgo]
       run:                                 # [cgo]
         - {{ compiler('c') }}              # [unix and cgo]
         - {{ compiler('cxx') }}            # [unix and cgo]
