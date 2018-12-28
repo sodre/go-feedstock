@@ -2,7 +2,7 @@
 {% set version = "1.11.2" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -25,16 +25,16 @@ build:
     - libc.so.6
 
 outputs:
-  - name: {{ name|lower}}                                                     # [cgo]
-    requirements:                                                             # [cgo]
-      run:                                                                    # [cgo]
-        - {{ pin_subpackage(name.lower()+"_"+target_platform, exact=True) }}  # [cgo]
-    test:                                                                     # [cgo]
-      commands:                                                               # [cgo]
-        - go version                                                          # [cgo]
+  - name: {{ name }}                                                  # [cgo]
+    requirements:                                                     # [cgo]
+      run:                                                            # [cgo]
+        - {{ pin_subpackage(name+"_"+target_platform, exact=True) }}  # [cgo]
+    test:                                                             # [cgo]
+      commands:                                                       # [cgo]
+        - go version                                                  # [cgo]
 
-  - name: {{ name|lower }}-core        # [cgo]
-  - name: {{ name|lower }}-nocgo-core  # [not cgo]
+  - name: {{ name }}-core        # [cgo]
+  - name: {{ name }}-nocgo-core  # [not cgo]
     script: build-core.sh   # [not win]
     script: build-core.bat  # [win]
     requirements:
@@ -73,8 +73,8 @@ outputs:
         - go run hello-c.go  # [cgo]
         - go build hello-c.go  # [cgo]
 
-  - name: {{ name|lower }}_{{ target_platform }}         # [cgo]
-  - name: {{ name|lower }}-nocgo_{{ conda_goplatform }}  # [not cgo]
+  - name: {{ name }}_{{ target_platform }}         # [cgo]
+  - name: {{ name }}-nocgo_{{ conda_goplatform }}  # [not cgo]
     script: build-{{ cgo_var }}-platform.sh   # [unix]
     script: build-{{ cgo_var }}-platform.bat  # [win]
     requirements:
