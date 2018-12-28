@@ -9,7 +9,6 @@ for F in activate deactivate; do
 
   # Second, expand the GOOS and GOARCH variables
   # We have to use the conda provided ones in this case
-  // OSX bash version is too old to convert it lowercase
   goos=$(uname 2>&1 | tr '[:upper:]' '[:lower:]')
   sed -i.bak \
     -e "s|@GOOS@|${goos}|g" \
