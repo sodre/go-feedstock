@@ -25,38 +25,37 @@ build:
     - libc.so.6
 
 outputs:
-  - name: {{ name|lower}}  # [cgo]
-    requirements:  # [cgo]
-      run:  # [cgo]
+  - name: {{ name|lower}}                                                     # [cgo]
+    requirements:                                                             # [cgo]
+      run:                                                                    # [cgo]
         - {{ pin_subpackage(name.lower()+"_"+target_platform, exact=True) }}  # [cgo]
-    test:  # [cgo]
-      commands:  # [cgo]
-        - go version  # [cgo]
+    test:                                                                     # [cgo]
+      commands:                                                               # [cgo]
+        - go version                                                          # [cgo]
 
-  - name: {{ name|lower }}-core  # [cgo]
+  - name: {{ name|lower }}-core        # [cgo]
   - name: {{ name|lower }}-nocgo-core  # [not cgo]
     script: build-core.sh   # [not win]
     script: build-core.bat  # [win]
     requirements:
       build:
         - {{ compiler('go1.4-bootstrap') }}
+
         - perl     # [not win]
         - sed      # [osx]
         - m2-sed   # [win]
         - m2-grep  # [win]
 
-        - {{ compiler('c') }}        # [unix and cgo]
-        - {{ compiler('cxx') }}      # [unix and cgo]
-        - {{ compiler('fortran') }}  # [unix and cgo]
-
+        - {{ compiler('c') }}              # [unix and cgo]
+        - {{ compiler('cxx') }}            # [unix and cgo]
+        - {{ compiler('fortran') }}        # [unix and cgo]
         - {{ compiler('m2w64_c') }}        # [win and cgo]
         - {{ compiler('m2w64_cxx') }}      # [win and cgo]
         - {{ compiler('m2w64_fortran') }}  # [win and cgo]
-      run:
-        - {{ compiler('c') }}        # [unix and cgo]
-        - {{ compiler('cxx') }}      # [unix and cgo]
-        - {{ compiler('fortran') }}  # [unix and cgo]
-
+      run:                                 # [cgo]
+        - {{ compiler('c') }}              # [unix and cgo]
+        - {{ compiler('cxx') }}            # [unix and cgo]
+        - {{ compiler('fortran') }}        # [unix and cgo]
         - {{ compiler('m2w64_c') }}        # [win and cgo]
         - {{ compiler('m2w64_cxx') }}      # [win and cgo]
         - {{ compiler('m2w64_fortran') }}  # [win and cgo]
@@ -74,7 +73,7 @@ outputs:
         - go run hello-c.go  # [cgo]
         - go build hello-c.go  # [cgo]
 
-  - name: {{ name|lower }}_{{ target_platform }}  # [cgo]
+  - name: {{ name|lower }}_{{ target_platform }}         # [cgo]
   - name: {{ name|lower }}-nocgo_{{ conda_goplatform }}  # [not cgo]
     script: build-{{ cgo_var }}-platform.sh   # [unix]
     script: build-{{ cgo_var }}-platform.bat  # [win]
