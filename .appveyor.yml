@@ -46,7 +46,7 @@ install:
 build: off
 
 test_script:
-    - conda.exe render -m .ci_support\%CONFIG%.yaml --quiet
+    - conda.exe render recipe -m .ci_support\%CONFIG%.yaml --quiet
     - conda.exe build recipe -m .ci_support\%CONFIG%.yaml --quiet
 deploy_script:
     - cmd: upload_package .\ .\recipe .ci_support\%CONFIG%.yaml
