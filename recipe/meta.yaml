@@ -41,7 +41,6 @@ outputs:
         - {{ compiler('go14') }}
 
         - perl     # [not win]
-        - sed      # [osx]
         - m2-sed   # [win]
         - m2-grep  # [win]
 
