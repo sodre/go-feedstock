@@ -20,6 +20,12 @@ conda_goplatform:
 - linux-64
 - osx-64
 - win-64
+m2w64_c_compiler:
+- m2w64-toolchain
+m2w64_cxx_compiler:
+- m2w64-toolchain
+m2w64_fortran_compiler:
+- m2w64-toolchain
 target_platform:
 - win-64
 zip_keys:
