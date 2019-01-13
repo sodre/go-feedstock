@@ -6,12 +6,8 @@ jobs:
   strategy:
     maxParallel: 8
     matrix:
-      linux_c_compilergcccgo0cgo_varnocgocxx_compilergxxfortran_compilergfortrantarget_platformlinux-64:
-        CONFIG: linux_c_compilergcccgo0cgo_varnocgocxx_compilergxxfortran_compilergfortrantarget_platformlinux-64
       linux_c_compilergcccgo1cgo_varcgocxx_compilergxxfortran_compilergfortrantarget_platformlinux-64:
         CONFIG: linux_c_compilergcccgo1cgo_varcgocxx_compilergxxfortran_compilergfortrantarget_platformlinux-64
-      linux_c_compilertoolchain_ccgo0cgo_varnocgocxx_compilertoolchain_cxxfortran_compilertoolchain_forttarget_platformlinux-64:
-        CONFIG: linux_c_compilertoolchain_ccgo0cgo_varnocgocxx_compilertoolchain_cxxfortran_compilertoolchain_forttarget_platformlinux-64
       linux_c_compilertoolchain_ccgo1cgo_varcgocxx_compilertoolchain_cxxfortran_compilertoolchain_forttarget_platformlinux-64:
         CONFIG: linux_c_compilertoolchain_ccgo1cgo_varcgocxx_compilertoolchain_cxxfortran_compilertoolchain_forttarget_platformlinux-64
   steps:

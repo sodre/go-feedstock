@@ -1,0 +1,46 @@
+#!/usr/bin/groovy
+pipeline {
+  agent none
+  stages {
+   stage('build') {
+      parallel {
+        stage('linux_c_compilergcccgo1cgo_varcgocxx_compilergxxfortran_compilergfortrantarget_platformlinux-64') {
+          agent {
+            label 'condaforge/linux-anvil-comp7'
+          }
+          environment {
+            CONFIG="${STAGE_NAME}"
+            FEEDSTOCK_ROOT="${WORKSPACE}"
+            RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
+            ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
+          }
+          steps {
+            sh """#!/bin/bash -il
+               conda activate base
+               .circleci/build_steps.sh
+               """
+            fileExists '${ARTIFACTS}/conda-forge-build-done-${CONFIG}'
+          }
+        }
+        stage('linux_c_compilertoolchain_ccgo1cgo_varcgocxx_compilertoolchain_cxxfortran_compilertoolchain_forttarget_platformlinux-64') {
+          agent {
+            label 'condaforge/linux-anvil'
+          }
+          environment {
+            CONFIG="${STAGE_NAME}"
+            FEEDSTOCK_ROOT="${WORKSPACE}"
+            RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
+            ARTIFACTS="${FEEDSTOCK_ROOT}/build_artifacts"
+          }
+          steps {
+            sh """#!/bin/bash -il
+               conda activate base
+               .circleci/build_steps.sh
+               """
+            fileExists '${ARTIFACTS}/conda-forge-build-done-${CONFIG}'
+          }
+        }
+      }
+    }
+  }
+}
